@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MCV_WEB_API.Models
 {
@@ -18,6 +14,9 @@ namespace MCV_WEB_API.Models
 
         [Required]
         public string Email { get; set; }
+
+        [Required]
+        public string Senha { get; set; }
 
         [Required]
         public string Token { get; set; }
