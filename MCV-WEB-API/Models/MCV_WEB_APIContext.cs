@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
+﻿using System.Data.Entity;
 
 namespace MCV_WEB_API.Models
 {
@@ -15,8 +11,12 @@ namespace MCV_WEB_API.Models
         // For more information refer to the documentation:
         // http://msdn.microsoft.com/en-us/data/jj591621.aspx
     
-        public MCV_WEB_APIContext() : base("name=MCV_WEB_APIContext")
-        {
+        public MCV_WEB_APIContext() : base("" +
+            "Data Source=(local);" +
+            "Initial Catalog=db_mwapi;" +
+            "Persist Security Info=True;" +
+            "User ID=sa;" +
+            "Password=sql2017"){
         }
 
         public System.Data.Entity.DbSet<MCV_WEB_API.Models.Usuario> Usuarios { get; set; }
