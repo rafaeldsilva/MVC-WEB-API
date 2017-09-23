@@ -18,7 +18,7 @@ namespace MCV_WEB_API.Models
         [Required]
         public string Senha { get; set; }
 
-        [Required]
+        
         public string Token { get; set; }
 
         //Data de cadastro
