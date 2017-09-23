@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace MCV_WEB_API.Models
 {
@@ -23,10 +24,10 @@ namespace MCV_WEB_API.Models
 
         //Data de cadastro
         [DataType(DataType.DateTime)]
-        public string dt_timestamp { get; set; }
+        public DateTime dt_timestamp { get; set; }
 
         //Data do token
         [DataType(DataType.DateTime)]
-        public string dt_token { get; set; }
+        public DateTime dt_token { get; set; }
     }
 }
