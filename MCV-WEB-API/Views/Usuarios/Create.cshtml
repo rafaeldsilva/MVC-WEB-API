@@ -1,11 +1,11 @@
 ﻿@model MCV_WEB_API.Models.Usuario
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Novo Cadastro";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+<h2>Novo Cadastro</h2>
 
 
 @using (Html.BeginForm()) 
@@ -81,7 +81,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Voltar ao início.", "Index")
 </div>
 
 @section Scripts {

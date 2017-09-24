@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<MCV_WEB_API.Models.Usuario>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Início";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Cadastro</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Novo", "Create")
 </p>
 <table class="table">
     <tr>
@@ -28,9 +28,11 @@
             @Html.DisplayNameFor(model => model.Token)
         </th>
         <th>
+           
             @Html.DisplayNameFor(model => model.dt_timestamp)
         </th>
         <th>
+           
             @Html.DisplayNameFor(model => model.dt_token)
         </th>
         <th></th>
@@ -39,7 +41,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Nome)
+            @Html.DisplayFor(modelItem => item.Nome )
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.SobreNome)
@@ -54,15 +56,15 @@
             @Html.DisplayFor(modelItem => item.Token)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.dt_timestamp)
+            @Html.DisplayFor(modelItem => item.dt_timestamp )
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.dt_token)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Remover", "Delete", new { id=item.Id })
         </td>
     </tr>
 }
