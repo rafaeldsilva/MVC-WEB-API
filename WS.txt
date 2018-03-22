@@ -1,0 +1,73 @@
+using System.Text;
+using System.Net;
+using Newtonsoft.Json;
+using System.IO;
+using System;
+
+namespace FGlobus.Util.WebApi
+{
+    /// <summary>
+    /// WsRest
+    /// </summary>
+    public static class WsRest
+    {
+        /// <summary>
+        /// URL_REST
+        /// </summary>
+        public static string URL_REST { get; set; }
+
+        /// <summary>
+        /// EnviarRequisicaoHttp
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="controller"></param>
+        /// <param name="metodo"></param>
+        /// <param name="objeto"></param>
+        /// <param name="method"></param>
+        /// <returns></returns>
+        public static T EnviarRequisicaoHttp<T>(string controller, string metodo, EstruturaTransporte objeto, string method = "POST")
+        {
+            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(URL_REST + "/" + controller + "/" + metodo);
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Method = method;
+            httpWebRequest.ContentLength = 0;
+
+            if (objeto != null)
+            {
+                byte[] data = new ASCIIEncoding().GetBytes(JsonConvert.SerializeObject(objeto));
+                httpWebRequest.ContentLength = data.Length;
+
+                Stream stream = httpWebRequest.GetRequestStream();
+                stream.Write(data, 0, data.Length);
+                stream.Close();
+            }
+
+            try
+            {
+                HttpWebResponse webResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+
+                StreamReader responseReader = new StreamReader(webResponse.GetResponseStream());
+                string json = responseReader.ReadToEnd();
+                responseReader.Close();
+
+                return JsonConvert.DeserializeObject<T>(json.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+                //return default(T);
+            }
+        }
+
+        /// <summary>
+        /// ValidarAcesso
+        /// </summary>
+        /// <param name="token"></param>
+        /// <param name="shortCode"></param>
+        public static void ValidarAcesso(string token, int shortCode)
+        {
+            if (string.IsNullOrEmpty(token) || token != CriptografiaBO.CriptografaValores(shortCode.ToString(), "BgmRodotec-Globus+"))
+                throw new Exception("Acesso não autorizado.");
+        }
+    }
+}
